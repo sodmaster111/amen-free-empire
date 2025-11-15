@@ -1,11 +1,19 @@
 import { Router } from 'express';
 
-export const healthRouter = Router();
+export const healthRouter = (startedAt: number) => {
+  const router = Router();
 
-healthRouter.get('/', (_req, res) => {
-  res.json({
-    status: 'ok',
-    service: 'amen-backend',
-    version: '0.0.1'
+  router.get('/', (_req, res) => {
+    const now = Date.now();
+    const uptimeSeconds = Math.floor((now - startedAt) / 1000);
+
+    res.json({
+      status: 'ok',
+      service: 'amen-backend',
+      uptime: uptimeSeconds,
+      timestamp: new Date(now).toISOString()
+    });
   });
-});
+
+  return router;
+};

@@ -1,38 +1,56 @@
 # Amen Backend
 
-This directory contains a minimal Express-based HTTP service for the AMEN FREE EMPIRE project. It exposes health information that can be used by other components to verify the backend is running.
+Минимальный backend-сервис проекта AMEN FREE EMPIRE на Node.js и TypeScript. Сервер построен на Express — он выбран из-за простоты, зрелой экосистемы и большого сообщества, что делает поддержку на бесплатных серверах максимально доступной.
 
-## Getting started
-
-### Install dependencies
+## Быстрый старт
 
 ```bash
 cd backend
 npm install
 ```
 
-### Run in development mode
+### Режим разработки
 
 ```bash
 npm run dev
 ```
 
-This starts the Express server with automatic reloads via `tsx`.
+Сервер поднимается через `tsx watch`, поэтому при сохранении файлов он автоматически перезапускается.
 
-### Call the health check
-
-With the server running locally (default port `3000`), call the health endpoint:
+### Сборка и запуск production-версии
 
 ```bash
-curl http://localhost:3000/health
+npm run build
+npm start
 ```
 
-Expected response:
+Команда `npm run build` компилирует TypeScript в `dist/`, а `npm start` запускает собранную версию.
+
+## Доступные эндпоинты
+
+- `GET /health` — возвращает JSON:
 
 ```json
 {
   "status": "ok",
   "service": "amen-backend",
-  "version": "0.0.1"
+  "uptime": 42,
+  "timestamp": "2024-06-01T12:00:00.000Z"
 }
+```
+
+`uptime` указывает количество секунд с момента старта сервера, `timestamp` — текущий ISO-временной штамп.
+
+## Настройка порта
+
+По умолчанию сервер слушает порт `3000`. Чтобы изменить порт, установите переменную окружения `PORT` перед запуском:
+
+```bash
+PORT=4000 npm run dev
+```
+
+или
+
+```bash
+PORT=4000 npm start
 ```
