@@ -1,0 +1,12 @@
+{
+  "build": {
+    "command": "npm install && npm run build"
+  },
+  "deploy": {
+    "command": "npm start",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": "3000"
+    }
+  }
+}
