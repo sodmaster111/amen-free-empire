@@ -1,10 +1,10 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { access, mkdir, readFile, writeFile } from 'fs/promises';
 import { constants as fsConstants } from 'fs';
-import { join } from 'path';
+import { resolve } from 'path';
 
-const DONATIONS_DIR = join(process.cwd(), 'data');
-const DONATIONS_FILE = join(DONATIONS_DIR, 'donations.json');
+const DONATIONS_DIR = resolve(process.cwd(), '..', 'data');
+const DONATIONS_FILE = resolve(DONATIONS_DIR, 'donations.json');
 
 interface DonateBody {
   name: string;
