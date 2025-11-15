@@ -1,0 +1,15 @@
+project: amen-empire
+services:
+  - name: amen-app
+    type: node
+    env:
+      NODE_ENV: production
+    source:
+      install:
+        - npm install
+      build:
+        - npm run build
+      start:
+        - npm start
+    ports:
+      - 3000
