@@ -1,0 +1,11 @@
+{
+  "name": "amen-free-empire",
+  "private": true,
+  "workspaces": [
+    "backend"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace backend",
+    "start": "npm run start --workspace backend"
+  }
+}
